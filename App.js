@@ -3,8 +3,6 @@ import configureStore from "./model/store/configureStore";
 import { Provider } from "react-redux";
 import Intro from "./display/components/intro";
 
-console.log(Intro);
-
 const store = configureStore();
 
 export default class App extends React.Component {
