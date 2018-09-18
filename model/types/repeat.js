@@ -1,29 +1,31 @@
+import Typist from "../../lib/typist";
+
 export default {
   fields: {
     numIterations: {
-      type: "scalar.integer",
+      type: Typist.INTEGER,
       required: true,
       default: () => 1,
       formLabel: "Number of Iterations"
     },
     currentIteration: {
-      type: "scalar.integer",
+      type: Typist.INTEGER,
       required: true,
       default: () => 1,
       formLabel: false
     },
     repeatUntilDate: {
-      type: "jsObj.date",
+      type: Typist.DATE,
       required: true,
       formLabel: "Repeat Until"
     },
     frequencyNumber: {
-      type: "scalar.integer",
+      type: Typist.INTEGER,
       required: true,
       formLabel: "Repeat Every"
     },
     frequencyUnit: {
-      type: "scalar.string",
+      type: Typist.STRING,
       options: [
         "day",
         "days",

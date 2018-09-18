@@ -1,5 +1,16 @@
 export default {
-  entries: [],
+  entries: [
+    {
+      id: 51,
+      description: "blah",
+      amount: 27,
+      highlightColor: "#FFF",
+      resetBalance: false,
+      completed: false,
+      canceled: false,
+      seriesId: 52
+    }
+  ],
   accounts: [
     { name: "Cash", primary: false },
     { name: "Paycheck", primary: false },

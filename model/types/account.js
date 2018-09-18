@@ -1,11 +1,13 @@
+import Typist from "../../lib/typist";
+
 export default {
   name: {
-    type: "scalar.string",
+    type: Typist.STRING,
     required: true,
     formLabel: "Account Name"
   },
   owned: {
-    type: "scalar.boolean",
+    type: Typist.BOOLEAN,
     required: true,
     default: () => true,
     formLabel: "User-Owned"

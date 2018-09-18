@@ -1,17 +1,19 @@
 import { generateId } from "../../lib/random";
 import repeatType from "./repeat";
 import accountType from "./account";
+import Typist from "../../lib/typist";
 
 export default {
+  type: Typist.OBJECT,
   fields: {
     id: {
-      type: "scalar.integer",
+      type: Typist.INTEGER,
       required: true,
       default: () => generateId(),
       formLabel: false
     },
     date: {
-      type: "jsObj.date",
+      type: Typist.DATE,
       required: true,
       default: () => {
         new Date();
@@ -19,12 +21,12 @@ export default {
       formLabel: "Start Date"
     },
     description: {
-      type: "scalar.string",
+      type: Typist.STRING,
       required: true,
       formLabel: "Description"
     },
     amount: {
-      type: "scalar.number",
+      type: Typist.NUMBER,
       required: false,
       formLabel: "Amount"
     },
@@ -39,7 +41,7 @@ export default {
       formLabel: "Destination Account"
     },
     comment: {
-      type: "scalar.string",
+      type: Typist.STRING,
       required: false,
       formLabel: "Instance Comment"
     },
@@ -48,45 +50,45 @@ export default {
       required: true
     },
     seriesId: {
-      type: "scalar.integer",
+      type: Typist.INTEGER,
       required: true,
       formLabel: false
     },
     previousId: {
-      type: "scalar.integer",
+      type: Typist.INTEGER,
       required: false,
       formLabel: false
     },
     nextId: {
-      type: "scalar.integer",
+      type: Typist.INTEGER,
       required: false,
       formLabel: false
     },
     canceled: {
-      type: "scalar.boolean",
+      type: Typist.BOOLEAN,
       required: true,
       default: () => false,
       formLabel: "Cancel Instance"
     },
     completed: {
-      type: "scalar.boolean",
+      type: Typist.BOOLEAN,
       required: true,
       default: () => false,
       formLabel: "Completed"
     },
     resetBalance: {
-      type: "scalar.boolean",
+      type: Typist.BOOLEAN,
       required: true,
       default: () => false,
       formLabel: "Reset Balance"
     },
     rescheduledFor: {
-      type: "jsObj.date",
+      type: Typist.DATE,
       required: false,
       formLabel: "Reset Instance"
     },
     highlightColor: {
-      type: "scalar.string",
+      type: Typist.STRING,
       required: true,
       default: () => "#FFF",
       formLabel: "Highlight Color"

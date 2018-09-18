@@ -3,14 +3,20 @@ import { Text, View } from "react-native";
 import { connect } from "react-redux";
 import styles from "./styles";
 import entryType from "../../../model/types/entry";
-import * as T from "../../../lib/typist";
+import T from "../../../lib/typist";
 
 class Intro extends React.Component {
   componentDidMount() {
-    console.log(entryType);
-    console.log(T.makeYup({}));
-    console.log(T.makeFormik({}));
-    console.log(T.makePropTypes({}));
+    // console.log("T", T);
+    // console.log(entryType);
+    const yupper = T.makeYup(entryType);
+    const { entries } = this.props;
+    yupper
+      .validate(entries[0])
+      .then(a => console.log("valid", a))
+      .catch(e => console.log("err", e));
+    // console.log(T.makeFormik({}));
+    // console.log(T.makePropTypes({}));
   }
 
   render() {
@@ -26,7 +32,8 @@ class Intro extends React.Component {
 }
 
 function mapStateToProps(state) {
-  return {};
+  // console.log("state", state);
+  return { entries: state.entries };
 }
 
 function mapDispatchToProps(dispatch) {
