@@ -8,7 +8,27 @@ export default {
       resetBalance: false,
       completed: false,
       canceled: false,
-      seriesId: 52
+      seriesId: 51
+    },
+    {
+      id: 52,
+      description: "blah",
+      amount: 27,
+      highlightColor: "#FFF",
+      resetBalance: false,
+      completed: false,
+      canceled: false,
+      seriesId: 51
+    },
+    {
+      id: 53,
+      description: "blah",
+      amount: 27,
+      highlightColor: "#FFF",
+      resetBalance: false,
+      completed: false,
+      canceled: false,
+      seriesId: 51
     }
   ],
   accounts: [

@@ -54,16 +54,6 @@ export default {
       required: true,
       formLabel: false
     },
-    previousId: {
-      type: Typist.INTEGER,
-      required: false,
-      formLabel: false
-    },
-    nextId: {
-      type: Typist.INTEGER,
-      required: false,
-      formLabel: false
-    },
     canceled: {
       type: Typist.BOOLEAN,
       required: true,

@@ -1,29 +1,22 @@
-import * as types from "../actionTypes";
+import { ADD_ENTRY, EDIT_ENTRY, DELETE_ENTRY } from "../actionTypes";
 
 export function addEntry(data) {
   return {
-    type: types.ADD_ENTRY,
+    type: ADD_ENTRY,
     data: data
   };
 }
 
 export function editEntry(id, mode, data) {
   return {
-    type: types.EDIT_ENTRY,
-    data: {
-      id: id,
-      mode: mode,
-      data: data
-    }
+    type: EDIT_ENTRY,
+    data: { id, mode, data }
   };
 }
 
 export function deleteEntry(id, mode) {
   return {
-    type: types.DELETE_ENTRY,
-    data: {
-      id: id,
-      mode: mode
-    }
+    type: DELETE_ENTRY,
+    data: { id, mode }
   };
 }

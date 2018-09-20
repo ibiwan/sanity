@@ -30,10 +30,12 @@ export default function accounts(state = initialState.accounts, action) {
   }
 }
 
-function accountsWithRename(state, { id, names }) {
-  return state.accounts;
+function accountsWithRename(state, { id, name }) {
+  return state.accounts.map(
+    acct => (acct.id === id ? { ...acct, name: name } : acct)
+  );
 }
 
 function accountsWithout(state, { id }) {
-  return state.accounts;
+  return state.accounts.filter(acct => acct.id !== id);
 }

@@ -3,6 +3,11 @@ export const ADD_ENTRY = "ADD_ENTRY";
 export const EDIT_ENTRY = "EDIT_ENTRY"; // specify all ,one, or future in data
 export const DELETE_ENTRY = "DELETE_ENTRY";
 
+export const ENTRY_EDIT_MODE_ALL_ENTRIES = "ALL_ENTRIES";
+export const ENTRY_EDIT_MODE_CURRENT_ENTRY_ONLY = "CURRENT_ENTRY_ONLY";
+export const ENTRY_EDIT_MODE_CURRENT_AND_FUTURE_ENTRIES =
+  "CURRENT_AND_FUTURE_ENTRIES";
+
 // LIST VIEW
 export const SET_LIST_SORTING = "SET_LIST_SORTING";
 

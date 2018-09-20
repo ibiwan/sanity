@@ -1,35 +1,58 @@
 import initialState from "../initialState";
-import { ADD_ENTRY, EDIT_ENTRY, DELETE_ENTRY } from "../../actions/actionTypes";
 
-export default function entries(state = initialState.entries, action) {
+import {
+  ADD_ENTRY,
+  EDIT_ENTRY,
+  DELETE_ENTRY,
+  ENTRY_EDIT_MODE_ALL_ENTRIES,
+  ENTRY_EDIT_MODE_CURRENT_ENTRY_ONLY,
+  ENTRY_EDIT_MODE_CURRENT_AND_FUTURE_ENTRIES
+} from "../../actions/actionTypes";
+
+export default function entries(entries = initialState.entries, action) {
   switch (action.type) {
     case ADD_ENTRY:
-      console.log("ADD_ENTRY Action");
-      return {
-        ...state,
-        entries: [...entries, action.data]
-      };
+      const entry = action.data;
+      return [...entries, entry];
     case EDIT_ENTRY:
-      console.log("EDIT_ENTRY Action");
-      return (newState = {
-        ...state,
-        entries: entriesWithChange(state, action.data)
-      });
+      return entriesWithChange(entries, action.data);
     case DELETE_ENTRY:
-      console.log("DELETE_ENTRY Action");
-      return {
-        ...state,
-        entries: entriesWithout(state, action.data)
-      };
+      return entriesWithout(entries, action.data);
     default:
-      return state;
+      return entries;
   }
 }
 
-function entriesWithChange(state, { id, mode, data }) {
-  return state.entries;
+function entriesWithChange(entries, { id, mode, change }) {
+  const targetEntries = getTargets(entries, id, mode);
+  return entries.map(
+    entry =>
+      targetEntries.includes(entry.id) ? { ...entry, ...change } : entry
+  );
 }
 
-function entriesWithout(state, { id, mode }) {
-  return state.entries;
+function entriesWithout(entries, { id, mode }) {
+  const targetEntries = getTargets(entries, id, mode);
+  return entries.filter(entry => !targetEntries.includes(entry.id));
+}
+
+function getTargets(entries, id, mode) {
+  const currentEntry = entries.find(entry => entry.id === id);
+  const { seriesId } = currentEntry;
+
+  switch (mode) {
+    case ENTRY_EDIT_MODE_ALL_ENTRIES:
+      return entries
+        .filter(entry => entry.seriesId === seriesId)
+        .map(entry => entry.id);
+      break;
+    case ENTRY_EDIT_MODE_CURRENT_AND_FUTURE_ENTRIES:
+      return entries
+        .filter(entry => entry.seriesId === seriesId && entry.id >= id)
+        .map(entry => entry.id);
+      break;
+    case ENTRY_EDIT_MODE_CURRENT_ENTRY_ONLY:
+      return [id];
+      break;
+  }
 }
