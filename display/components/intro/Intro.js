@@ -10,23 +10,12 @@ import {
   ENTRY_EDIT_MODE_CURRENT_ENTRY_ONLY,
   ENTRY_EDIT_MODE_CURRENT_AND_FUTURE_ENTRIES
 } from "../../../model/actions/actionTypes";
-// import { CreateEntryForm } from "../../forms/entry";
-// console.log(CreateEntryForm);
-// import { ConnectedCreateEntryForm } from "../../forms/entry/CreateEntryForm/ConnectedCreateEntryForm";
 import { CreateEntryForm } from "../../forms/entry";
 import { errlog } from "../../../lib/debug";
 
-// errlog
-
-// console.log(CreateEntryForm);
-// console.log(RawCreateEntryForm());
 class Intro extends React.Component {
   componentDidMount() {
     const { entries } = this.props;
-    // console.log(entries);
-    // console.log(this.props);
-    // console.log("T", T);
-    // console.log(entryType);
     // const yupper = T.makeYup(entryType);
     // const { entries } = this.props;
     // yupper
@@ -35,12 +24,7 @@ class Intro extends React.Component {
     //   .catch(e => console.log("err", e));
     // console.log(T.makeFormik({}));
     // console.log(T.makePropTypes({}));
-    // this.props.
-    // const {dispatch} =
-    // const id = 52;
     // const { editEntry } = A;
-    // console.log("e", editEntry);
-    // console.log(this.props, "a", A, id);
     // console.log("want to dispatch");
     // this.props.editEntry(id, ENTRY_EDIT_MODE_CURRENT_AND_FUTURE_ENTRIES, {
     //   description: "halb"
