@@ -7,10 +7,6 @@ import PropTypes from "prop-types";
 import EmailInput from "./Inputs/EmailInput";
 import PasswordInput from "./Inputs/PasswordInput";
 import styles from "./styles";
-// import * as LoginActions from "../../actions/Login/LoginActions";
-// import { emailSchema } from "../../validation";
-
-// import { ViewWithWrapper } from "../View";
 
 const InnerForm = props => {
   const { values, errors, touched, handleSubmit, ...others } = props;
@@ -61,19 +57,12 @@ class LoginForm extends Component {
 
   render() {
     return (
-      // <ViewWithWrapper
-      //   style={{
-      //     justifyContent: "center",
-      //     width: "100%"
-      //   }}
-      // >
       <Formik
         initialValues={{ username: null, password: null }}
         onSubmit={v => this.handleSubmit(v)}
         // validationSchema={emailSchema}
         render={props => <InnerForm {...props} />}
       />
-      // </ViewWithWrapper>
     );
   }
 }

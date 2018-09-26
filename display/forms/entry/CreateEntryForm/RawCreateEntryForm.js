@@ -1,66 +1,58 @@
 // Render Prop
-import React from "react";
-import { Text, View, Button, TextInput, Form } from "react-native";
-import {
-  FormLabel,
-  FormInput,
-  FormValidationMessage
-} from "react-native-elements";
+import React, { Fragment } from "react";
+import { View, Button } from "react-native";
 import { connect } from "react-redux";
 import Actions from "../../../../model/actions";
-import { DatePicker } from "native-base";
-
-console.log("In RawCreateEntryForm");
+// import { DatePicker } from "native-base";
+import { LabeledInput } from "../../Inputs";
+import { objmap } from "../../../../lib/functional";
+import { errlog, errlog_d } from "../../../../lib/debug";
 
 export const RawCreateEntryForm = props => {
-  // console.log("RawCreateEntryForm props", props);
-  const {
-    errors,
-    handleBlur,
-    handleChange,
-    handleSubmit,
-    initialValues,
-    touched,
-    values,
-    isSubmitting,
-    ...moreProps
-  } = props;
-  // console.log({ moreProps });
+  const { values, errors, touched, handleSubmit, ...others } = props;
+
+  const labels = {
+    date: "Date",
+    description: "Description",
+    amount: "Amount",
+    source: "Source Account",
+    destination: "Destination Account",
+    repeatNum: "Repeat # Times",
+    repeatUntil: "Repeat Until Date",
+    repeatFreq: "Repeat Every # of",
+    repeatUnit: "Interval Scale"
+  };
+
+  const inputProps = objmap(values, (o, k) => {
+    console.log(k);
+    return {
+      ...others,
+      error: touched[k] && errors[k],
+      key: k,
+      name: k,
+      value: values[k],
+      label: labels[k] || "needLabel: " + k
+    };
+  });
+
+  const before = ["date", "description", "amount", "source", "destination"];
+  const inside = ["repeatNum", "repeatUntil", "repeatFreq", "repeatUnit"];
+  const after = ["color"];
+
   return (
-    <View>
-      <Text>hihi</Text>
-      <TextInput />
-      <Button
-        title="GO"
-        onPress={() => {
-          console.log("onPress pressed on");
-        }}
-      />
-      <TextInput>bybye</TextInput>
-      <Text>a</Text>
-      <TextInput name="date" />
-      <Text>a</Text>
-      <TextInput name="description" />
-      <Text>a</Text>
-      <TextInput name="amount" />
-      <Text>a</Text>
-      <TextInput name="source" />
-      <Text>a</Text>
-      <TextInput name="destination" />
-      <Text>a</Text>
-      <View>
-        <Text>a</Text>
-        <TextInput name="repeatNum" />
-        <Text>a</Text>
-        <TextInput name="repeatUntil" />
-        <Text>a</Text>
-        <TextInput name="repeatFreq" />
-        <Text>a</Text>
-        <TextInput name="repeatUnit" />
-        <Text>a</Text>
+    <Fragment>
+      {before.map(field => (
+        <LabeledInput {...inputProps[field]} />
+      ))}
+      <View style={{ backgroundColor: "#666" }}>
+        {inside.map(field => (
+          <LabeledInput {...inputProps[field]} />
+        ))}
       </View>
-      <Text>a</Text>
-      <TextInput name="color" />
-    </View>
+      {after.map(field => (
+        <LabeledInput {...inputProps[field]} />
+      ))}
+      <Button title="Create" onPress={handleSubmit} />
+    </Fragment>
   );
 };

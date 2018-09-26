@@ -58,7 +58,6 @@ class Intro extends React.Component {
     errlog("In Intro", { CreateEntryForm });
     return (
       <View>
-        <Text>yoyo</Text>
         <CreateEntryForm />
       </View>
     );

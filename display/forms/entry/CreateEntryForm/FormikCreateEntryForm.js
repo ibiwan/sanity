@@ -1,43 +1,31 @@
-// Render Prop
-import React from "react";
-import { Text, View, Button, TextInput } from "react-native";
-import { connect } from "react-redux";
-import { Formik, Form, Field, withFormik } from "formik";
-import Actions from "../../../../model/actions";
-import { DatePicker } from "native-base";
+import { withFormik } from "formik";
 import { RawCreateEntryForm } from "./RawCreateEntryForm";
 import Typist from "../../../../lib/typist";
 import { errlog } from "../../../../lib/debug";
 import { EntryType, RepeatType } from "../../../../model/types";
 
-errlog("In FormikCreateEntryForm", { RawCreateEntryForm });
-
 const mapPropsToValues = props => {
-  console.log({ "FormikCreateEntryForm props": props });
+  // console.log({ "FormikCreateEntryForm props": props });
   const {
     date,
     description,
     amount,
     source,
     destination,
-    repeat: { num, until, freq, unit } = {
-      num: "inf",
-      until: null,
-      freq: 1,
-      unit: "month"
-    },
+    repeat,
     color
   } = props;
+
   return {
-    date: new Date(),
+    date: (date || new Date()).toISOString().substring(0, 10),
     description: description || "",
     amount: amount || 0.0,
     source: source || null,
     destination: destination || null,
-    repeatNum: num || "inf",
-    repeatUntil: until || null,
-    repeatFreq: freq || 1,
-    repeatUnit: unit || "month",
+    repeatNum: (repeat && repeat.num) || "inf",
+    repeatUntil: (repeat && repeat.until) || null,
+    repeatFreq: (repeat && repeat.freq) || 1,
+    repeatUnit: (repeat && repeat.unit) || "month",
     color: color || "#666"
   };
 };
@@ -49,9 +37,7 @@ const handleSubmit = (values, { resetForm, setErrors, setSubmitting }) => {
   console.log("handling submit of:", values);
 };
 
-// console.log({ RawCreateEntryForm });
-
-// // HOC form into formik context
+// HOC form into formik context
 export const FormikCreateEntryForm = withFormik({
   mapPropsToValues,
   validationSchema,
