@@ -10,8 +10,11 @@ import {
   ENTRY_EDIT_MODE_CURRENT_ENTRY_ONLY,
   ENTRY_EDIT_MODE_CURRENT_AND_FUTURE_ENTRIES
 } from "../../../model/actions/actionTypes";
-import CreateEntryForm from "../../forms/entry/createEntryForm";
-
+// import { CreateEntryForm } from "../../forms/entry";
+// console.log(CreateEntryForm);
+// import { ConnectedCreateEntryForm } from "../../forms/entry/CreateEntryForm/ConnectedCreateEntryForm";
+import { LoginForm } from "../../forms/LoginForm";
+// console.log(RawCreateEntryForm());
 class Intro extends React.Component {
   componentDidMount() {
     const { entries } = this.props;
@@ -47,19 +50,7 @@ class Intro extends React.Component {
   }
 
   render() {
-    return (
-      <View style={styles.container}>
-        <Text>Intro Component</Text>
-        <Text>Open up App.js to start working on your app!</Text>
-        <Text>Changes you make will automatically reload.</Text>
-        <Text>Shake your phone to open the developer menu.</Text>
-        <CreateEntryForm
-          handleChange={() => {}}
-          handleBlur={() => {}}
-          handleSubmit={() => {}}
-        />
-      </View>
-    );
+    return <LoginForm />;
   }
 }
 
