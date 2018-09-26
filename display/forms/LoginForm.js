@@ -1,5 +1,5 @@
 import React, { Component, View } from "react";
-import { Button } from "react-native-elements";
+import {Button, Text} from "react-native-elements";
 import { Formik } from "formik";
 import { connect } from "react-redux";
 import { withNavigation } from "react-navigation";
@@ -91,4 +91,4 @@ LoginForm.propTypes = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withNavigation(LoginForm));
+)(LoginForm);
