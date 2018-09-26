@@ -7,13 +7,13 @@ import Actions from "../../../../model/actions";
 import { DatePicker } from "native-base";
 import { RawCreateEntryForm } from "./RawCreateEntryForm";
 import Typist from "../../../../lib/typist";
-
+import { errlog } from "../../../../lib/debug";
 import { EntryType, RepeatType } from "../../../../model/types";
 
-console.log("FormikCreateEntryForm");
+errlog("In FormikCreateEntryForm", { RawCreateEntryForm });
 
 const mapPropsToValues = props => {
-  console.log({ file: "FormikCreateEntryForm props", props });
+  console.log({ "FormikCreateEntryForm props": props });
   const {
     date,
     description,

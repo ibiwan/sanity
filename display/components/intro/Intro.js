@@ -13,7 +13,12 @@ import {
 // import { CreateEntryForm } from "../../forms/entry";
 // console.log(CreateEntryForm);
 // import { ConnectedCreateEntryForm } from "../../forms/entry/CreateEntryForm/ConnectedCreateEntryForm";
-import { LoginForm } from "../../forms/LoginForm";
+import { CreateEntryForm } from "../../forms/entry";
+import { errlog } from "../../../lib/debug";
+
+// errlog
+
+// console.log(CreateEntryForm);
 // console.log(RawCreateEntryForm());
 class Intro extends React.Component {
   componentDidMount() {
@@ -50,7 +55,13 @@ class Intro extends React.Component {
   }
 
   render() {
-    return <LoginForm />;
+    errlog("In Intro", { CreateEntryForm });
+    return (
+      <View>
+        <Text>yoyo</Text>
+        <CreateEntryForm />
+      </View>
+    );
   }
 }
 

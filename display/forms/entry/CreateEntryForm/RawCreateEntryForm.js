@@ -10,7 +10,7 @@ import { connect } from "react-redux";
 import Actions from "../../../../model/actions";
 import { DatePicker } from "native-base";
 
-console.log("RawCreateEntryForm");
+console.log("In RawCreateEntryForm");
 
 export const RawCreateEntryForm = props => {
   // console.log("RawCreateEntryForm props", props);
@@ -28,6 +28,7 @@ export const RawCreateEntryForm = props => {
   // console.log({ moreProps });
   return (
     <View>
+      <Text>hihi</Text>
       <TextInput />
       <Button
         title="GO"
@@ -35,30 +36,31 @@ export const RawCreateEntryForm = props => {
           console.log("onPress pressed on");
         }}
       />
-      {/* <Text>a</Text>
-      <Field name="date" />
+      <TextInput>bybye</TextInput>
       <Text>a</Text>
-      <Field name="description" />
+      <TextInput name="date" />
       <Text>a</Text>
-      <Field name="amount" />
+      <TextInput name="description" />
       <Text>a</Text>
-      <Field name="source" />
+      <TextInput name="amount" />
       <Text>a</Text>
-      <Field name="destination" />
+      <TextInput name="source" />
+      <Text>a</Text>
+      <TextInput name="destination" />
       <Text>a</Text>
       <View>
         <Text>a</Text>
-        <Field name="repeatNum" />
+        <TextInput name="repeatNum" />
         <Text>a</Text>
-        <Field name="repeatUntil" />
+        <TextInput name="repeatUntil" />
         <Text>a</Text>
-        <Field name="repeatFreq" />
+        <TextInput name="repeatFreq" />
         <Text>a</Text>
-        <Field name="repeatUnit" />
+        <TextInput name="repeatUnit" />
         <Text>a</Text>
       </View>
       <Text>a</Text>
-      <Field name="color" /> */}
+      <TextInput name="color" />
     </View>
   );
 };

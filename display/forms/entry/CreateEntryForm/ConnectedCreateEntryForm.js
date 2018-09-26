@@ -6,8 +6,9 @@ import { Formik, Form, Field } from "formik";
 import Actions from "../../../../model/actions";
 import { DatePicker } from "native-base";
 import { FormikCreateEntryForm } from "./FormikCreateEntryForm";
+import { errlog } from "../../../../lib/debug";
 
-console.log("ConnectedCreateEntryForm");
+errlog("In ConnectedCreateEntryForm", { FormikCreateEntryForm });
 
 const mapStateToProps = state => ({
   templates: state.templates
@@ -19,9 +20,7 @@ const mapDispatchToProps = {
   //   deleteEntry: Actions.deleteEntry
 };
 
-const CreateEntryForm = connect(
+export const CreateEntryForm = connect(
   mapStateToProps,
   mapDispatchToProps
 )(FormikCreateEntryForm);
-
-export { CreateEntryForm };
