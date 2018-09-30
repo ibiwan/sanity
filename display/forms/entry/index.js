@@ -1,1 +1,1 @@
-export { CreateEntryForm } from "./CreateEntryForm/ConnectedCreateEntryForm";
+export { CreateEntryForm } from "./CreateEntryForm/WrappedCreateEntryForm";

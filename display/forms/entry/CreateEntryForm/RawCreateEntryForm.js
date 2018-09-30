@@ -11,29 +11,51 @@ import { errlog, errlog_d } from "../../../../lib/debug";
 export const RawCreateEntryForm = props => {
   const { values, errors, touched, handleSubmit, ...others } = props;
 
-  const labels = {
-    date: "Date",
-    description: "Description",
-    amount: "Amount",
-    source: "Source Account",
-    destination: "Destination Account",
-    repeatNum: "Repeat # Times",
-    repeatUntil: "Repeat Until Date",
-    repeatFreq: "Repeat Every # of",
-    repeatUnit: "Interval Scale"
+  const customs = {
+    date: {
+      label: "Date"
+    },
+    description: {
+      label: "Description"
+    },
+    amount: {
+      label: "Amount",
+      keyboardType: "numeric"
+    },
+    source: {
+      label: "Source Account"
+    },
+    destination: {
+      label: "Destination Account"
+    },
+    repeatNum: {
+      label: "Repeat # Times",
+      keyboardType: "numeric"
+    },
+    repeatUntil: {
+      label: "Repeat Until Date"
+    },
+    repeatFreq: {
+      label: "Repeat Every # of",
+      keyboardType: "numeric"
+    },
+    repeatUnit: {
+      label: "Interval Scale"
+    }
   };
 
   const inputProps = objmap(values, (o, k) => {
-    console.log(k);
     return {
       ...others,
       error: touched[k] && errors[k],
       key: k,
       name: k,
       value: values[k],
-      label: labels[k] || "needLabel: " + k
+      label: `needlabel: ${k}`,
+      ...customs[k]
     };
   });
+
 
   const before = ["date", "description", "amount", "source", "destination"];
   const inside = ["repeatNum", "repeatUntil", "repeatFreq", "repeatUnit"];
