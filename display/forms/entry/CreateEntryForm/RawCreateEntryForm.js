@@ -41,6 +41,16 @@ export const RawCreateEntryForm = props => {
     },
     repeatUnit: {
       label: "Interval Scale"
+    },
+    resetBalance: {
+      label: "Reset Balance",
+      hidden: true,
+      value: false
+    },
+    completed: {
+      label: "Completed",
+      hidden: true,
+      value: false
     }
   };
 
@@ -55,7 +65,6 @@ export const RawCreateEntryForm = props => {
       ...customs[k]
     };
   });
-
 
   const before = ["date", "description", "amount", "source", "destination"];
   const inside = ["repeatNum", "repeatUntil", "repeatFreq", "repeatUnit"];

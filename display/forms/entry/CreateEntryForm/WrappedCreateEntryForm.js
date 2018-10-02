@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { EntryType, RepeatType } from "../../../../model/types";
 import Actions from "../../../../model/actions";
 import Typist from "../../../../lib/typist";
-import { errlog } from "../../../../lib/debug";
+import { errlog, errlog_d } from "../../../../lib/debug";
 
 import { RawCreateEntryForm } from "./RawCreateEntryForm";
 
@@ -43,7 +43,7 @@ const handleSubmit = (values, { resetForm, setErrors, setSubmitting }) => {
 // HOC form into formik context
 const FormikCreateEntryForm = withFormik({
   mapPropsToValues,
-  validationSchema,
+  // validationSchema,
   handleSubmit
 })(RawCreateEntryForm);
 
