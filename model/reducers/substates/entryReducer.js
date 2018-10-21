@@ -1,4 +1,5 @@
-import initialState from "../initialState";
+import initialState from '../initialState';
+import type {Entry} from "../initialState";
 
 import {
   ADD_ENTRY,
@@ -9,16 +10,21 @@ import {
   ENTRY_EDIT_MODE_CURRENT_AND_FUTURE_ENTRIES
 } from "../../actions/actionTypes";
 
-export default function entries(entries = initialState.entries, action) {
+const x:Entry = 3;
+
+export default function entries<T>(
+  entries: Array<T> = initialState.entries,
+  action
+): Array<T> {
   switch (action.type) {
-    case ADD_ENTRY:
+    case ADD_ENTRY: 
       const entry = action.data;
       return [...entries, entry];
-    case EDIT_ENTRY:
+    case EDIT_ENTRY: 
       return entriesWithChange(entries, action.data);
-    case DELETE_ENTRY:
+    case DELETE_ENTRY: 
       return entriesWithout(entries, action.data);
-    default:
+    default: 
       return entries;
   }
 }
@@ -26,8 +32,8 @@ export default function entries(entries = initialState.entries, action) {
 function entriesWithChange(entries, { id, mode, change }) {
   const targetEntries = getTargets(entries, id, mode);
   return entries.map(
-    entry =>
-      targetEntries.includes(entry.id) ? { ...entry, ...change } : entry
+    entry => 
+      targetEntries.includes(entry.id) ? { ...entry, ...change }: entry
   );
 }
 
@@ -41,17 +47,17 @@ function getTargets(entries, id, mode) {
   const { seriesId } = currentEntry;
 
   switch (mode) {
-    case ENTRY_EDIT_MODE_ALL_ENTRIES:
+    case ENTRY_EDIT_MODE_ALL_ENTRIES: 
       return entries
         .filter(entry => entry.seriesId === seriesId)
         .map(entry => entry.id);
       break;
-    case ENTRY_EDIT_MODE_CURRENT_AND_FUTURE_ENTRIES:
+    case ENTRY_EDIT_MODE_CURRENT_AND_FUTURE_ENTRIES: 
       return entries
         .filter(entry => entry.seriesId === seriesId && entry.id >= id)
         .map(entry => entry.id);
       break;
-    case ENTRY_EDIT_MODE_CURRENT_ENTRY_ONLY:
+    case ENTRY_EDIT_MODE_CURRENT_ENTRY_ONLY: 
       return [id];
       break;
   }

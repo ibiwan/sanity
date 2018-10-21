@@ -1,34 +1,49 @@
+export type Entry = {
+  id            : number,
+  description   : string,
+  amount        : number,
+  highlightColor: string,
+  resetBalance  : boolean,
+  completed     : boolean,
+  canceled      : boolean,
+  seriesId      : number
+};
+export type Account = {
+  name   : string,
+  primary: boolean
+}
+
 export default {
   entries: [
     {
-      id: 51,
-      description: "blah",
-      amount: 27,
+      id            : 51,
+      description   : "blah",
+      amount        : 27,
       highlightColor: "#FFF",
-      resetBalance: false,
-      completed: false,
-      canceled: false,
-      seriesId: 51
+      resetBalance  : false,
+      completed     : false,
+      canceled      : false,
+      seriesId      : 51
     },
     {
-      id: 52,
-      description: "blah",
-      amount: 27,
+      id            : 52,
+      description   : "blah",
+      amount        : 27,
       highlightColor: "#FFF",
-      resetBalance: false,
-      completed: false,
-      canceled: false,
-      seriesId: 51
+      resetBalance  : false,
+      completed     : false,
+      canceled      : false,
+      seriesId      : 51
     },
     {
-      id: 53,
-      description: "blah",
-      amount: 27,
+      id            : 53,
+      description   : "blah",
+      amount        : 27,
       highlightColor: "#FFF",
-      resetBalance: false,
-      completed: false,
-      canceled: false,
-      seriesId: 51
+      resetBalance  : false,
+      completed     : false,
+      canceled      : false,
+      seriesId      : 51
     }
   ],
   accounts: [
@@ -40,32 +55,32 @@ export default {
   ],
   templates: [
     {
-      name: "blank",
-      isDefaultIncome: false,
+      name            : "blank",
+      isDefaultIncome : false,
       isDefaultExpense: false
     },
     {
-      name: "credit",
-      from: "Paycheck",
-      to: "Checking",
-      isDefaultIncome: true,
+      name            : "credit",
+      from            : "Paycheck",
+      to              : "Checking",
+      isDefaultIncome : true,
       isDefaultExpense: false
     },
     {
-      name: "debit",
-      from: "Checking",
-      to: "Vendor",
-      isDefaultIncome: false,
+      name            : "debit",
+      from            : "Checking",
+      to              : "Vendor",
+      isDefaultIncome : false,
       isDefaultExpense: true
     }
   ],
   user: {
     logged_in: false,
-    username: null,
-    passhash: null
+    username : null,
+    passhash : null
   },
-  current_date: null, // now
-  series_list: {
+  current_date: null,   // now
+  series_list : {
     sort_order: [
       { field: "date", dir: "asc" },
       { field: "description", dir: "asc" },
@@ -74,7 +89,7 @@ export default {
     filters: []
   },
   ledger: {
-    view_date: null, // current_date
+    view_date : null,   // current_date
     sort_order: [
       { field: "date", dir: "asc" },
       { field: "amount", dir: "desc" }

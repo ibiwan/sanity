@@ -33,7 +33,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  editEntry: Actions.editEntry,
+  editEntry  : Actions.editEntry,
   deleteEntry: Actions.deleteEntry
 };
 
