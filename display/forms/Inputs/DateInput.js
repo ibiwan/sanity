@@ -1,57 +1,80 @@
-import React, { PureComponent } from "react";
-import { View } from "react-native";
+import React, { PureComponent, Fragment } from "react";
+import { View, Modal, Text, TouchableOpacity } from "react-native";
 import {
   FormInput,
   FormValidationMessage,
   FormLabel
 } from "react-native-elements";
 import PropTypes from "prop-types";
+import DateTimePicker from "react-native-calendar-picker";
+
+const DAYS = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday"
+];
 
 import styles from "../styles";
+import { errlog } from "../../../lib/debug";
 
-export default class Input extends PureComponent {
-  handleChange(value) {
-    const { onChange, name } = this.props;
-    onChange(name, value);
+export default class DateInput extends PureComponent {
+  constructor() {
+    super();
+    this.state = { pickerVisible: false };
   }
 
-  handleTouch() {
-    const { onTouch, name } = this.props;
-    onTouch(name);
+  handleValueTouched() {
+    this.showPicker();
+  }
+
+  handlePicked(date) {
+    const { handleChange, name } = this.props;
+
+    errlog(date.toString(), DAYS[date.weekday()]);
+    this.hidePicker();
+  }
+
+  showPicker() {
+    this.setState({ pickerVisible: true });
+  }
+
+  hidePicker() {
+    this.setState({ pickerVisible: false });
   }
 
   render() {
-    const {
-      label,
-      error,
-      placeholder,
-      component,
-      reference,
-      labelStyle,
-      ...rest
-    } = this.props;
+    const { pickerVisible } = this.state;
 
-    if (component) {
-      return component;
-    }
+    const { label, error, placeholder, labelStyle, ...rest } = this.props;
 
     return (
-      <View style={styles.inputWrapper}>
-        <FormLabel labelStyle={labelStyle}>{label}</FormLabel>
-        <FormInput
-          placeholder={placeholder}
-          ref={reference}
-          {...rest}
-          onChangeText={v => this.handleChange(v)}
-          onBlur={v => this.handleTouch(v)}
-        />
-        {error && <FormValidationMessage>{error}</FormValidationMessage>}
-      </View>
+      <Fragment>
+        <Modal visible={pickerVisible}>
+          <DateTimePicker
+            onDateChange={d => this.handlePicked(d)}
+            onCancel={() => this.hidePicker()}
+          />
+        </Modal>
+
+        <TouchableOpacity onPress={() => this.handleValueTouched()}>
+          <FormLabel labelStyle={labelStyle}>{label}</FormLabel>
+          <FormInput
+            placeholder={placeholder}
+            {...rest}
+            pointerEvents={"none"}
+          />
+          {error && <FormValidationMessage>{error}</FormValidationMessage>}}
+        </TouchableOpacity>
+      </Fragment>
     );
   }
 }
 
-Input.defaultProps = {
+DateInput.defaultProps = {
   label: null,
   error: null,
   placeholder: null,
@@ -61,7 +84,7 @@ Input.defaultProps = {
   name: null
 };
 
-Input.propTypes = {
+DateInput.propTypes = {
   label: PropTypes.string,
   error: PropTypes.string,
   placeholder: PropTypes.string,

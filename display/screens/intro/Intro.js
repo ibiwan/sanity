@@ -19,7 +19,7 @@ class Intro extends React.Component {
   }
 
   render() {
-    errlog("In Intro", { CreateEntryForm });
+    // errlog("In Intro", { CreateEntryForm });
     return (
       <ScrollView>
         <CreateEntryForm />
@@ -33,7 +33,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  editEntry  : Actions.editEntry,
+  editEntry: Actions.editEntry,
   deleteEntry: Actions.deleteEntry
 };
 
