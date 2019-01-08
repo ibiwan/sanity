@@ -19,7 +19,7 @@ class Intro extends React.Component {
   }
 
   render() {
-    errlog("In Intro", { CreateEntryForm });
+    // errlog("In Intro", { CreateEntryForm });
     return (
       <ScrollView>
         <CreateEntryForm />

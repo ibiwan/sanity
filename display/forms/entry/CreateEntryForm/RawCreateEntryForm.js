@@ -3,16 +3,18 @@ import React, { Fragment } from "react";
 import { View, Button } from "react-native";
 import { connect } from "react-redux";
 import Actions from "../../../../model/actions";
-// import { DatePicker } from "native-base";
+
 import { LabeledInput } from "../../Inputs";
 import { objmap } from "../../../../lib/functional";
 import { errlog, errlog_d } from "../../../../lib/debug";
+import { getIconType } from "react-native-elements";
 
 export const RawCreateEntryForm = props => {
   const { values, errors, touched, handleSubmit, ...others } = props;
 
   const customs = {
     date: {
+      type: "date",
       label: "Date"
     },
     description: {
