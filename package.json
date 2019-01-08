@@ -34,6 +34,7 @@
     "react-navigation": "^2.16.0",
     "react-redux": "^5.0.7",
     "redux-thunk": "^2.3.0",
-    "yup": "^0.26.5"
+    "yup": "^0.26.5",
+    "merge": "^1.2.1"
   }
 }
